@@ -48,10 +48,12 @@ app.get("/files", (req, res) => {
 });
 
 // Download
-app.get("/download/:name", (req, res) => {
-  const filePath = path.join(__dirname, "uploads", req.params.name);
-  res.download(filePath);
+app.get("/download/:file", (req, res) => {
+  const fileName = req.params.file;
+  const filePath = path.join(__dirname, "uploads", fileName);
+  res.download(filePath, fileName);
 });
+
 
 // Listen on LAN
 app.listen(PORT, "0.0.0.0", () => {
